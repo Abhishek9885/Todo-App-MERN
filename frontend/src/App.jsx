@@ -21,7 +21,7 @@ function App() {
   }, [dark]);
 
   const fetchTodos = async () => {
-    const res = await axios.get("/api/todos");
+    const res = await axios.get("https://todo-backend-xvra.onrender.com/api/todos");
     setTodos(res.data);
   };
 
@@ -33,7 +33,7 @@ function App() {
     e.preventDefault();
     if (!newTodo.trim()) return;
 
-    const res = await axios.post("/api/todos", {
+    const res = await axios.post("https://todo-backend-xvra.onrender.com/api/todos", {
       text: newTodo,
       priority,
       dueDate
@@ -46,14 +46,14 @@ function App() {
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`/api/todos/${id}`);
+    await axios.delete(`https://todo-backend-xvra.onrender.com/api/todos${id}`);
     setTodos(todos.filter((t) => t._id !== id));
   };
 
   const toggleTodo = async (id) => {
     const todo = todos.find((t) => t._id === id);
 
-    const res = await axios.patch(`/api/todos/${id}`, {
+    const res = await axios.patch(`https://todo-backend-xvra.onrender.com/api/todos/${id}`, {
       completed: !todo.completed
     });
 
